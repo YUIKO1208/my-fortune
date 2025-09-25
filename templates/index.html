@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LUCKY MIRROR | ポジティブ占い</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>LUCKY MIRROR</h1>
+    <p class="tagline">〜 今日のあなたを、明日へつなげる心の鏡 〜</p>
+
+    <form method="POST" action="{{ url_for('result') }}" id="lm-form">
+      <div class="card">
+        <h2>1) いま気になるテーマを選んでください</h2>
+        <div class="radio-row">
+          <label><input type="radio" name="category" value="relationship" required> 人間関係</label>
+          <label><input type="radio" name="category" value="love"> 恋愛</label>
+          <label><input type="radio" name="category" value="work"> 仕事</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2) 一言で悩みを教えてください</h2>
+        <textarea name="concern" rows="3" placeholder="例）仕事で大きなミスをして、自信をなくした…"></textarea>
+      </div>
+
+      <div class="card">
+        <h2>3) 誕生月と血液型を教えてください</h2>
+        <div class="row">
+          <label>誕生月
+            <select name="month" required>
+              {% for m in range(1,13) %}
+                <option value="{{m}}">{{m}}月</option>
+              {% endfor %}
+            </select>
+          </label>
+          <label>血液型
+            <select name="blood" required>
+              <option>A</option><option>B</option><option>O</option><option>AB</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="card tarot">
+        <h2>4) タロット風に運気の焦点を選んでください</h2>
+        <div class="radio-row">
+          {% for f in facets %}
+            <label><input type="radio" name="facet" value="{{f.id}}"> {{f.label}}</label>
+          {% endfor %}
+        </div>
+        <p class="hint">※選ばない場合はランダムに選ばれます。</p>
+      </div>
+
+      <div class="actions">
+        <button type="submit">占う</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

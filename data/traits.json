@@ -1,0 +1,242 @@
+{
+  "1_A": {
+    "month_trait": "落ち着きと計画性",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "コツコツ続ける力"
+  },
+  "1_B": {
+    "month_trait": "落ち着きと計画性",
+    "blood_trait": "発想力・自由さ",
+    "strength": "コツコツ続ける力"
+  },
+  "1_O": {
+    "month_trait": "落ち着きと計画性",
+    "blood_trait": "行動力・包容力",
+    "strength": "コツコツ続ける力"
+  },
+  "1_AB": {
+    "month_trait": "落ち着きと計画性",
+    "blood_trait": "客観性・独自性",
+    "strength": "コツコツ続ける力"
+  },
+  "2_A": {
+    "month_trait": "柔軟さと社交性",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "場を和ませる力"
+  },
+  "2_B": {
+    "month_trait": "柔軟さと社交性",
+    "blood_trait": "発想力・自由さ",
+    "strength": "場を和ませる力"
+  },
+  "2_O": {
+    "month_trait": "柔軟さと社交性",
+    "blood_trait": "行動力・包容力",
+    "strength": "場を和ませる力"
+  },
+  "2_AB": {
+    "month_trait": "柔軟さと社交性",
+    "blood_trait": "客観性・独自性",
+    "strength": "場を和ませる力"
+  },
+  "3_A": {
+    "month_trait": "好奇心と行動力",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "新しい挑戦を楽しむ心"
+  },
+  "3_B": {
+    "month_trait": "好奇心と行動力",
+    "blood_trait": "発想力・自由さ",
+    "strength": "新しい挑戦を楽しむ心"
+  },
+  "3_O": {
+    "month_trait": "好奇心と行動力",
+    "blood_trait": "行動力・包容力",
+    "strength": "新しい挑戦を楽しむ心"
+  },
+  "3_AB": {
+    "month_trait": "好奇心と行動力",
+    "blood_trait": "客観性・独自性",
+    "strength": "新しい挑戦を楽しむ心"
+  },
+  "4_A": {
+    "month_trait": "誠実さと責任感",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "人を支える誠実さ"
+  },
+  "4_B": {
+    "month_trait": "誠実さと責任感",
+    "blood_trait": "発想力・自由さ",
+    "strength": "人を支える誠実さ"
+  },
+  "4_O": {
+    "month_trait": "誠実さと責任感",
+    "blood_trait": "行動力・包容力",
+    "strength": "人を支える誠実さ"
+  },
+  "4_AB": {
+    "month_trait": "誠実さと責任感",
+    "blood_trait": "客観性・独自性",
+    "strength": "人を支える誠実さ"
+  },
+  "5_A": {
+    "month_trait": "粘り強さと実直さ",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "最後までやり抜く粘り"
+  },
+  "5_B": {
+    "month_trait": "粘り強さと実直さ",
+    "blood_trait": "発想力・自由さ",
+    "strength": "最後までやり抜く粘り"
+  },
+  "5_O": {
+    "month_trait": "粘り強さと実直さ",
+    "blood_trait": "行動力・包容力",
+    "strength": "最後までやり抜く粘り"
+  },
+  "5_AB": {
+    "month_trait": "粘り強さと実直さ",
+    "blood_trait": "客観性・独自性",
+    "strength": "最後までやり抜く粘り"
+  },
+  "6_A": {
+    "month_trait": "気配りと調和",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "周囲を気遣う優しさ"
+  },
+  "6_B": {
+    "month_trait": "気配りと調和",
+    "blood_trait": "発想力・自由さ",
+    "strength": "周囲を気遣う優しさ"
+  },
+  "6_O": {
+    "month_trait": "気配りと調和",
+    "blood_trait": "行動力・包容力",
+    "strength": "周囲を気遣う優しさ"
+  },
+  "6_AB": {
+    "month_trait": "気配りと調和",
+    "blood_trait": "客観性・独自性",
+    "strength": "周囲を気遣う優しさ"
+  },
+  "7_A": {
+    "month_trait": "洞察力と想像力",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "物事の本質を見抜く目"
+  },
+  "7_B": {
+    "month_trait": "洞察力と想像力",
+    "blood_trait": "発想力・自由さ",
+    "strength": "物事の本質を見抜く目"
+  },
+  "7_O": {
+    "month_trait": "洞察力と想像力",
+    "blood_trait": "行動力・包容力",
+    "strength": "物事の本質を見抜く目"
+  },
+  "7_AB": {
+    "month_trait": "洞察力と想像力",
+    "blood_trait": "客観性・独自性",
+    "strength": "物事の本質を見抜く目"
+  },
+  "8_A": {
+    "month_trait": "情熱とリーダーシップ",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "周りを引っ張る熱量"
+  },
+  "8_B": {
+    "month_trait": "情熱とリーダーシップ",
+    "blood_trait": "発想力・自由さ",
+    "strength": "周りを引っ張る熱量"
+  },
+  "8_O": {
+    "month_trait": "情熱とリーダーシップ",
+    "blood_trait": "行動力・包容力",
+    "strength": "周りを引っ張る熱量"
+  },
+  "8_AB": {
+    "month_trait": "情熱とリーダーシップ",
+    "blood_trait": "客観性・独自性",
+    "strength": "周りを引っ張る熱量"
+  },
+  "9_A": {
+    "month_trait": "分析力と慎重さ",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "問題を整理する力"
+  },
+  "9_B": {
+    "month_trait": "分析力と慎重さ",
+    "blood_trait": "発想力・自由さ",
+    "strength": "問題を整理する力"
+  },
+  "9_O": {
+    "month_trait": "分析力と慎重さ",
+    "blood_trait": "行動力・包容力",
+    "strength": "問題を整理する力"
+  },
+  "9_AB": {
+    "month_trait": "分析力と慎重さ",
+    "blood_trait": "客観性・独自性",
+    "strength": "問題を整理する力"
+  },
+  "10_A": {
+    "month_trait": "挑戦心と粘り",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "逆境を糧にする胆力"
+  },
+  "10_B": {
+    "month_trait": "挑戦心と粘り",
+    "blood_trait": "発想力・自由さ",
+    "strength": "逆境を糧にする胆力"
+  },
+  "10_O": {
+    "month_trait": "挑戦心と粘り",
+    "blood_trait": "行動力・包容力",
+    "strength": "逆境を糧にする胆力"
+  },
+  "10_AB": {
+    "month_trait": "挑戦心と粘り",
+    "blood_trait": "客観性・独自性",
+    "strength": "逆境を糧にする胆力"
+  },
+  "11_A": {
+    "month_trait": "協調性と学び",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "学びを活かす適応力"
+  },
+  "11_B": {
+    "month_trait": "協調性と学び",
+    "blood_trait": "発想力・自由さ",
+    "strength": "学びを活かす適応力"
+  },
+  "11_O": {
+    "month_trait": "協調性と学び",
+    "blood_trait": "行動力・包容力",
+    "strength": "学びを活かす適応力"
+  },
+  "11_AB": {
+    "month_trait": "協調性と学び",
+    "blood_trait": "客観性・独自性",
+    "strength": "学びを活かす適応力"
+  },
+  "12_A": {
+    "month_trait": "包容力と直感",
+    "blood_trait": "几帳面・丁寧さ",
+    "strength": "人を包み込む優しさ"
+  },
+  "12_B": {
+    "month_trait": "包容力と直感",
+    "blood_trait": "発想力・自由さ",
+    "strength": "人を包み込む優しさ"
+  },
+  "12_O": {
+    "month_trait": "包容力と直感",
+    "blood_trait": "行動力・包容力",
+    "strength": "人を包み込む優しさ"
+  },
+  "12_AB": {
+    "month_trait": "包容力と直感",
+    "blood_trait": "客観性・独自性",
+    "strength": "人を包み込む優しさ"
+  }
+}

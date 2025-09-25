@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>結果 | LUCKY MIRROR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    async function submitSurvey(e){
+      e.preventDefault();
+      const form = document.getElementById("survey-form");
+      const fd = new FormData(form);
+      const res = await fetch("{{ url_for('survey') }}", {method:"POST", body: fd});
+      const j = await res.json();
+      const msg = document.getElementById("thankyou");
+      if(j.ok){ msg.style.display = "block"; }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>占い結果</h1>
+    <div class="card">
+      <p class="meta">カテゴリ：{{category}} ／ 誕生月：{{month}}月 ／ 血液型：{{blood}}型</p>
+      <p class="message">{{message}}</p>
+      <div class="gauge">
+        <div class="gauge-label">今日のポジティブ指数</div>
+        <div class="gauge-bar">
+          <span style="width: {{positive_index}}%"></span>
+        </div>
+        <div class="gauge-value">{{positive_index}}%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>アンケート（5段階）</h2>
+      <form id="survey-form" onsubmit="submitSurvey(event)">
+        <input type="hidden" name="category" value="{{category}}"/>
+        <input type="hidden" name="month" value="{{month}}"/>
+        <input type="hidden" name="blood" value="{{blood}}"/>
+        <input type="hidden" name="positive_index" value="{{positive_index}}"/>
+        <div class="row">
+          <label>スッキリ度
+            <select name="sukkiri" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+          <label>満足度
+            <select name="satisfaction" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit">送信する</button>
+        </div>
+        <p id="thankyou" style="display:none;margin-top:8px;">ご協力ありがとうございます！結果は研究データとして匿名で活用します。</p>
+      </form>
+    </div>
+
+    <div class="actions">
+      <a class="link" href="{{ url_for('index') }}">もう一度占う</a>
+    </div>
+  </div>
+</body>
+</html>
