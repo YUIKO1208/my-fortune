@@ -8,17 +8,19 @@ import csv
 
 # --- Optional: OpenAI (only used if OPENAI_API_KEY is set) ---
 USE_OPENAI = False
-
+client = None
 
 try:
     from openai import OpenAI
     api_key = os.getenv("OPENAI_API_KEY")
+    print("OPENAI_API_KEY:", api_key)
     if api_key:
         client = OpenAI(api_key=api_key)
         USE_OPENAI = True
     else:
         USE_OPENAI = False
-except Exception:
+except Exception as e:
+    print("OpenAI import failed:", e)
     USE_OPENAI = False
 
 print("USE_OPENAI:", USE_OPENAI)
