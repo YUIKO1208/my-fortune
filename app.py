@@ -21,6 +21,8 @@ try:
 except Exception:
     USE_OPENAI = False
 
+print("USE_OPENAI:", USE_OPENAI) 
+
 
 
 app = Flask(__name__)
