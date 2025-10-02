@@ -21,7 +21,10 @@ try:
 except Exception:
     USE_OPENAI = False
 
-print("USE_OPENAI:", USE_OPENAI) 
+print("USE_OPENAI:", USE_OPENAI)
+print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
+
+
 
 
 
