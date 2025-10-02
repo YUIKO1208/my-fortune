@@ -8,13 +8,20 @@ import csv
 
 # --- Optional: OpenAI (only used if OPENAI_API_KEY is set) ---
 USE_OPENAI = False
+
+
 try:
     from openai import OpenAI
-    if os.getenv("OPENAI_API_KEY"):
-        client = OpenAI()
+    api_key = os.getenv("OPENAI_API_KEY")
+    if api_key:
+        client = OpenAI(api_key=api_key)
         USE_OPENAI = True
+    else:
+        USE_OPENAI = False
 except Exception:
     USE_OPENAI = False
+
+
 
 app = Flask(__name__)
 
