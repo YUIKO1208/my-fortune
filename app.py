@@ -116,7 +116,7 @@ def result():
         message, positive_index, facet = rule_based_message(category, concern, month, blood)
 
     return render_template("result.html",
-                           category=category, concern=concern,
+                           username=username, category=category, concern=concern,
                            month=month, blood=blood,
                            message=message, positive_index=positive_index,
                            facet=facet)
