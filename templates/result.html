@@ -78,7 +78,7 @@
 
 　 <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const username = "{{ request.form.get('username', '') }}";
+      const username = "{{ username }}"; 
       const message = "{{ message }}";
       const positiveIndex = {{ positive_index }};
       const date = new Date().toLocaleString();
