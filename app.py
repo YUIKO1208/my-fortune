@@ -104,6 +104,7 @@ def index():
 
 @app.route("/result", methods=["POST"])
 def result():
+    username = request.form.get("username", "") 
     category = request.form.get("category", "work")
     concern = request.form.get("concern", "").strip()
     month = request.form.get("month", "1")
