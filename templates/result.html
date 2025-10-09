@@ -32,6 +32,9 @@
       </div>
     </div>
 
+
+    <div id="history" class="card"></div>
+
     <div class="card">
       <h2>アンケート（5段階）</h2>
       <form id="survey-form" onsubmit="submitSurvey(event)">
@@ -72,5 +75,48 @@
       <a class="link" href="{{ url_for('index') }}">もう一度占う</a>
     </div>
   </div>
+
+　 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const username = "{{ request.form.get('username', '') }}";
+      const message = "{{ message }}";
+      const positiveIndex = {{ positive_index }};
+      const date = new Date().toLocaleString();
+
+      if (username) {
+        const resultData = {
+          date: date,
+          message: message,
+          positiveIndex: positiveIndex
+        };
+
+        // 既存データがあれば取り出して配列に
+        const userHistory = JSON.parse(localStorage.getItem(username)) || [];
+        userHistory.push(resultData);
+
+        // 保存
+        localStorage.setItem(username, JSON.stringify(userHistory));
+
+        // 履歴表示
+        const historyDiv = document.getElementById("history");
+        if (userHistory.length > 1) {
+          const prev = userHistory[userHistory.length - 2];
+          const curr = userHistory[userHistory.length - 1];
+          const diff = curr.positiveIndex - prev.positiveIndex;
+          const arrow = diff > 0 ? "上昇↑✨" : diff < 0 ? "下降↓💭" : "変化なし🌿";
+          historyDiv.innerHTML = `
+            <h2>${username}さんのこれまでの運勢</h2>
+            <p>前回（${prev.date}）：${prev.positiveIndex}%</p>
+            <p>今回（${curr.date}）：${curr.positiveIndex}%</p>
+            <p>→ ${arrow}</p>
+          `;
+        } else {
+          historyDiv.innerHTML = `<p>初回の占い結果です🌸</p>`;
+        }
+      }
+    });
+  </script>
+
+
 </body>
 </html>

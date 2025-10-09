@@ -12,6 +12,12 @@
     <p class="tagline">〜 今日のあなたを、明日へつなげる心の鏡 〜</p>
 
     <form method="POST" action="{{ url_for('result') }}" id="lm-form">
+
+      <div class="card">
+        <h2>0) あなたのお名前を教えてください</h2>
+        <input type="text" name="username" id="username" placeholder="例）ゆいこ" required>
+      </div>
+      
       <div class="card">
         <h2>1) いま気になるテーマを選んでください</h2>
         <div class="radio-row">
