@@ -78,8 +78,8 @@
 
 　 <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const username = "{{ username }}"; 
-      const message = "{{ message }}";
+      const username = "{{ username|escapejs }}"; 
+      const message = "{{ message|escapejs }}";
       const positiveIndex = {{ positive_index }};
       const date = new Date().toLocaleString();
 
