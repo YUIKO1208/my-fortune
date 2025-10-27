@@ -59,7 +59,7 @@ def rule_based_message(category, concern, month, blood):
     blood_trait = trait.get("blood_trait","")
     strength = trait.get("strength","")
     base = 60 + (int(month) % 5) * 4
-    positive_index = min(99, max(40, base + random.randint(-5, 8)))
+    positive_index = min(99, max(0, base + random.randint(-25, 25)))
     facet = random.choice(TAROT_FACETS)
     lines = []
     lines.append(f"今は少し曇り空でも、来月には晴れ間がのぞく兆し。{facet['label']}では「{facet['hint']}」の運気。")
