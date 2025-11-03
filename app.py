@@ -1,10 +1,12 @@
-
 import os
 import json
+import uuid
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, make_response
 import random
 import csv
+import requests  # ← 追加：GASに送信するため
+import json
 
 # --- Optional: OpenAI (only used if OPENAI_API_KEY is set) ---
 USE_OPENAI = False
@@ -13,26 +15,18 @@ client = None
 try:
     from openai import OpenAI
     api_key = os.getenv("OPENAI_API_KEY")
-    print("OPENAI_API_KEY:", api_key)
     if api_key:
         client = OpenAI(api_key=api_key)
         USE_OPENAI = True
-    else:
-        USE_OPENAI = False
 except Exception as e:
-    print("OpenAI import failed:", e)
     USE_OPENAI = False
-
-print("USE_OPENAI:", USE_OPENAI)
-print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
-
-
-
-
 
 app = Flask(__name__)
 
-# Load 48-pattern trait database
+# Google Apps Script のURL（あなたの実際のURL）
+GAS_URL = "https://script.google.com/macros/s/AKfycbz-7j8Dyw9IfrOrGyKld8Q46V9-JEAvzAa5Z-MYj6FMYSGCUnzUejtSnT7lfLoZMhej/exec"
+
+# Load trait data
 with open(os.path.join(os.path.dirname(__file__), "data", "traits.json"), "r", encoding="utf-8") as f:
     TRAITS = json.load(f)
 
@@ -72,59 +66,49 @@ def rule_based_message(category, concern, month, blood):
     lines.append("小さな一歩が、思っている以上の追い風になるよ。")
     return " ".join(lines), positive_index, facet
 
-def openai_message(category, concern, month, blood):
-    prompt = f"""
-あなたはポジティブ占い師です。ユーザーの悩みに寄り添い、前向きなメッセージを日本語で220〜280字で返してください。
-条件:
-- トーンは優しく非判断的、根拠のない断定は避けるが、希望の比喩を使って励ます
-- カテゴリ: {category} / 悩み: {concern}
-- 誕生月: {month}月 / 血液型: {blood}型 の長所も1つだけ触れる
-- 最後に「今日のポジティブ指数: XX%」の形式で数値をつける（XXは60〜95）
-"""
-    if not USE_OPENAI:
-        return None
-    try:
-        resp = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role":"user", "content": prompt}],
-            temperature=0.8,
-            max_tokens=300
-        )
-        text = resp.choices[0].message.content.strip()
-        import re
-        m = re.search(r"(\d{2})\s*%", text)
-        positive_index = int(m.group(1)) if m else random.randint(60,95)
-        return text, positive_index, random.choice(TAROT_FACETS)
-    except Exception:
-        return None
-
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html", facets=TAROT_FACETS)
 
 @app.route("/result", methods=["POST"])
 def result():
-    username = request.form.get("username", "") 
+    # --- ユーザー識別ID（cookieに保存） ---
+    user_id = request.cookies.get("user_id")
+    if not user_id:
+        user_id = str(uuid.uuid4())
+
+    username = request.form.get("username", "")
     category = request.form.get("category", "work")
     concern = request.form.get("concern", "").strip()
     month = request.form.get("month", "1")
     blood = request.form.get("blood", "A")
 
-    ai = openai_message(category, concern, month, blood)
-    if ai:
-        message, positive_index, facet = ai
-    else:
-        message, positive_index, facet = rule_based_message(category, concern, month, blood)
+    # --- 占いメッセージ生成 ---
+    message, positive_index, facet = rule_based_message(category, concern, month, blood)
 
-    return render_template("result.html",
+    # --- Googleスプレッドシートへ送信 ---
+    data = {
+        "user_id": user_id,
+        "category": category,
+        "positivity": positive_index
+    }
+    try:
+        requests.post(GAS_URL, data=json.dumps(data), headers={"Content-Type": "application/json"}, timeout=3)
+    except Exception as e:
+        print("Failed to send to GAS:", e)
+
+    # --- 結果ページを返す（cookieにIDを保存） ---
+    resp = make_response(render_template("result.html",
                            username=username, category=category, concern=concern,
                            month=month, blood=blood,
                            message=message, positive_index=positive_index,
-                           facet=facet)
+                           facet=facet))
+    resp.set_cookie("user_id", user_id, max_age=60*60*24*365)  # 1年間保持
+    return resp
 
 @app.route("/survey", methods=["POST"])
 def survey():
-    sukkiri = request.form.get("sukkiri")       
+    sukkiri = request.form.get("sukkiri")
     satisfaction = request.form.get("satisfaction") 
     category = request.form.get("category")
     month = request.form.get("month")
@@ -133,10 +117,17 @@ def survey():
     condition = request.form.get("condition","LM")  
     
     with open(SURVEY_CSV, "a", newline='', encoding="utf-8") as f:
-        import csv
         writer = csv.writer(f)
         writer.writerow([datetime.utcnow().isoformat(), category, month, blood, positive_index, sukkiri, satisfaction, condition])
     return jsonify({"ok": True})
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8000)
+
+
+
+
+
+
+
+
