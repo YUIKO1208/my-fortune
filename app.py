@@ -18,7 +18,7 @@ try:
     if api_key:
         client = OpenAI(api_key=api_key)
         USE_OPENAI = True
-       else:
+    else:
        USE_OPENAI = False
   
 except Exception as e:
