@@ -18,8 +18,15 @@ try:
     if api_key:
         client = OpenAI(api_key=api_key)
         USE_OPENAI = True
+       else:
+       USE_OPENAI = False
+  
 except Exception as e:
     USE_OPENAI = False
+
+print("USE_OPENAI:", USE_OPENAI)
+print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
+
 
 app = Flask(__name__)
 
