@@ -15,13 +15,14 @@ document.getElementById("moodForm").addEventListener("submit", async function(ev
   const form = event.target;
   const formData = new FormData(form);
 
-  const response = await fetch("https://script.google.com/macros/s/AKfycbwDPVYo3uopegbt9PMf8ogLeEwjM4lsqMl9f9I7WVRE_f6gZ0jqvrMIp-XEORmUbMSaBQ/exec", {
+  const response = await fetch("https://script.google.com/macros/s/AKfycbzm1iaBLbReL0TwedqWWfYZuko1fF4PrgDl876Wy-4n-7bz35vw0sQ-hW5x5dz31odaMQ/exec", {
     method: "POST",
     body: formData,
-    mode: "no-cors" // ← これが重要！CORSエラーを防ぐ
+    mode: "no-cors" // ← CORS制限を回避する設定
   });
 
-  document.getElementById("result").textContent = "送信しました！";
+  document.getElementById("result").textContent = "✅ 送信しました！";
   form.reset();
 });
 </script>
+
