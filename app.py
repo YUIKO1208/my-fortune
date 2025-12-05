@@ -78,13 +78,15 @@ def rule_based_message(category, concern, month, blood):
    return " ".join(lines), positive_index, facet
 
 
-def openai_message(category, concern, month, blood):
+def openai_message(category, concern, month, blood,facets):
    prompt = f"""
 あなたはポジティブ占い師です。ユーザーの悩みに寄り添い、前向きなメッセージを日本語で220〜280字で返してください。
 条件:
 - トーンは優しく非判断的、根拠のない断定は避けるが、希望の比喩を使って励ます
 - カテゴリ: {category} / 悩み: {concern}
 - 誕生月: {month}月 / 血液型: {blood}型 の長所も1つだけ触れる
+- タロットの焦点: {facets} にも自然に触れてメッセージに組み込む
+- 今日のポジティブ指数がその数値になった理由を、1〜2文で優しく説明する（比喩的OK）
 - 最後に「今日のポジティブ指数: XX%」の形式で数値をつける（XXは60〜95）
 """
    if not USE_OPENAI:
@@ -117,9 +119,11 @@ def result():
    concern = request.form.get("concern", "").strip()
    month = request.form.get("month", "1")
    blood = request.form.get("blood", "A")
+   facets = request.form.get("facets","love")
 
 
-   ai = openai_message(category, concern, month, blood)
+
+   ai = openai_message(category, concern, month, blood,facets)
    if ai:
        message, positive_index, facet = ai
    else:
